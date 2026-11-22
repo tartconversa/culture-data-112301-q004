@@ -1,0 +1,410 @@
+{
+  "format": "jsonl-utf8-v1",
+  "synthetic": true,
+  "tables": {
+    "sites": {
+      "description": "场馆与保护区的人流上限。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "场馆"
+        },
+        "daily_capacity": {
+          "type": "int",
+          "nullable": false,
+          "description": "日总容量"
+        },
+        "protected_limit": {
+          "type": "int",
+          "nullable": false,
+          "description": "保护区日上限"
+        },
+        "region": {
+          "type": "str",
+          "nullable": false,
+          "description": "所在区域"
+        }
+      },
+      "key": "id",
+      "references": {},
+      "sha256": "3cdbdc5dc2355421db76b0ee6f271922c44ba35ffb60d85024c9f0e193f17682",
+      "row_count": 6
+    },
+    "routes": {
+      "description": "线路是共同消耗场馆和接驳席位的产品。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "线路"
+        },
+        "sites": {
+          "type": "list",
+          "nullable": false,
+          "description": "访问场馆"
+        },
+        "bus": {
+          "type": "str",
+          "nullable": false,
+          "description": "接驳车次"
+        },
+        "bus_seats": {
+          "type": "int",
+          "nullable": false,
+          "description": "接驳单日容量"
+        }
+      },
+      "key": "id",
+      "references": {},
+      "sha256": "345583d5785173497eb3d54ab2faa860aefec87526f46648df90c5a5b749b35a",
+      "row_count": 3
+    },
+    "daily_panel": {
+      "description": "客源地到场馆日面板，计数为到访次数。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "面板行"
+        },
+        "on": {
+          "type": "str",
+          "nullable": false,
+          "description": "到访日"
+        },
+        "origin": {
+          "type": "str",
+          "nullable": false,
+          "description": "客源地"
+        },
+        "site": {
+          "type": "str",
+          "nullable": false,
+          "description": "场馆"
+        },
+        "visits": {
+          "type": "int",
+          "nullable": false,
+          "description": "观测到访次数"
+        },
+        "ticket_capacity": {
+          "type": "int",
+          "nullable": false,
+          "description": "票务容量"
+        },
+        "sold_out": {
+          "type": "bool",
+          "nullable": false,
+          "description": "售罄标志"
+        },
+        "rain_mm": {
+          "type": "float",
+          "nullable": false,
+          "description": "降雨毫米"
+        },
+        "holiday": {
+          "type": "bool",
+          "nullable": false,
+          "description": "假日标志"
+        },
+        "closed": {
+          "type": "bool",
+          "nullable": false,
+          "description": "关闭标志"
+        },
+        "survey_coverage": {
+          "type": "float",
+          "nullable": false,
+          "description": "行程调查覆盖率"
+        }
+      },
+      "key": "id",
+      "references": {
+        "site": [
+          "sites",
+          "id"
+        ]
+      },
+      "sha256": "56c6b57fb16e440553d55b89a3336aa985deee09f948c6151a27352df2f40223",
+      "row_count": 8640
+    },
+    "campaigns": {
+      "description": "分期推广与可能产生外溢的客源联系。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "推广"
+        },
+        "origin": {
+          "type": "str",
+          "nullable": false,
+          "description": "主客源地"
+        },
+        "start": {
+          "type": "str",
+          "nullable": false,
+          "description": "推广起日"
+        },
+        "routes": {
+          "type": "list",
+          "nullable": false,
+          "description": "推广线路"
+        },
+        "spillover_origins": {
+          "type": "list",
+          "nullable": false,
+          "description": "资料确认的外溢客源联系"
+        },
+        "intensity": {
+          "type": "float",
+          "nullable": false,
+          "description": "推广投入相对量"
+        }
+      },
+      "key": "id",
+      "references": {},
+      "sha256": "bc163d198434de5804c35fb0f628ba74ea732c515707f3626d5b1242a2f15d86",
+      "row_count": 8
+    },
+    "itinerary_survey": {
+      "description": "匿名抽样行程，一人同日可跨馆。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "调查记录"
+        },
+        "person": {
+          "type": "str",
+          "nullable": false,
+          "description": "匿名人"
+        },
+        "on": {
+          "type": "str",
+          "nullable": false,
+          "description": "到访日"
+        },
+        "origin": {
+          "type": "str",
+          "nullable": false,
+          "description": "客源地"
+        },
+        "sites": {
+          "type": "list",
+          "nullable": false,
+          "description": "同程场馆"
+        },
+        "inclusion_probability": {
+          "type": "float",
+          "nullable": false,
+          "description": "调查纳入概率"
+        },
+        "linked": {
+          "type": "bool",
+          "nullable": false,
+          "description": "是否允许稳定行程关联"
+        }
+      },
+      "key": "id",
+      "references": {},
+      "sha256": "eed646e65161395143527028e21483ebca3895a1d71f5f10a495f122d24046d8",
+      "row_count": 900
+    },
+    "supply": {
+      "description": "未来供给，包括已售散客与接驳占用。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "供给行"
+        },
+        "on": {
+          "type": "str",
+          "nullable": false,
+          "description": "日期"
+        },
+        "site": {
+          "type": "str",
+          "nullable": false,
+          "description": "场馆"
+        },
+        "sold_individual": {
+          "type": "int",
+          "nullable": false,
+          "description": "已售散客人数"
+        },
+        "reserved_groups": {
+          "type": "int",
+          "nullable": false,
+          "description": "其他已确认团体人数"
+        },
+        "bus_reserved": {
+          "type": "int",
+          "nullable": false,
+          "description": "已占接驳席位"
+        },
+        "closed": {
+          "type": "bool",
+          "nullable": false,
+          "description": "是否关闭"
+        }
+      },
+      "key": "id",
+      "references": {
+        "site": [
+          "sites",
+          "id"
+        ]
+      },
+      "sha256": "f03bf56dabe31ab84b3f8b1086aaa21ca6badf578e5b17f72ade08881a023d34",
+      "row_count": 84
+    },
+    "group_requests": {
+      "description": "旅行社提出的整团候选。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "团体请求"
+        },
+        "agency": {
+          "type": "str",
+          "nullable": false,
+          "description": "旅行社"
+        },
+        "on": {
+          "type": "str",
+          "nullable": false,
+          "description": "到访日"
+        },
+        "origin": {
+          "type": "str",
+          "nullable": false,
+          "description": "客源地"
+        },
+        "route": {
+          "type": "str",
+          "nullable": false,
+          "description": "请求线路"
+        },
+        "people": {
+          "type": "int",
+          "nullable": false,
+          "description": "人数"
+        },
+        "expires_at": {
+          "type": "str",
+          "nullable": false,
+          "description": "报价失效时点"
+        },
+        "allowed_substitutes": {
+          "type": "list",
+          "nullable": false,
+          "description": "整团接受范围内的替代线路"
+        }
+      },
+      "key": "id",
+      "references": {
+        "route": [
+          "routes",
+          "id"
+        ]
+      },
+      "sha256": "f16947a871b71adfaf3c40521287edc61a94e9b6637bc58b5cd7e1be113fd02c",
+      "row_count": 24
+    },
+    "obligations": {
+      "description": "已经成立的团体权益。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "承诺"
+        },
+        "group": {
+          "type": "str",
+          "nullable": false,
+          "description": "团体"
+        },
+        "accepted_on": {
+          "type": "str",
+          "nullable": false,
+          "description": "接受日"
+        },
+        "route": {
+          "type": "str",
+          "nullable": false,
+          "description": "已确认线路"
+        },
+        "state": {
+          "type": "str",
+          "nullable": false,
+          "description": "承诺状态"
+        }
+      },
+      "key": "id",
+      "references": {
+        "group": [
+          "group_requests",
+          "id"
+        ],
+        "route": [
+          "routes",
+          "id"
+        ]
+      },
+      "sha256": "9519b57d2be69c045165b64a31a7a4f8dbbea37756083e166721fc1016128281",
+      "row_count": 2
+    },
+    "later_events": {
+      "description": "可后续到达的关闭及实际核销。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "后续事实"
+        },
+        "kind": {
+          "type": "str",
+          "nullable": false,
+          "description": "closure关闭、redeem入馆、transport接驳"
+        },
+        "on": {
+          "type": "str",
+          "nullable": false,
+          "description": "发生日"
+        },
+        "site": {
+          "type": "str",
+          "nullable": false,
+          "description": "场馆"
+        },
+        "group": {
+          "type": "str",
+          "nullable": true,
+          "description": "相关团体"
+        },
+        "actual_people": {
+          "type": "int",
+          "nullable": true,
+          "description": "实际人数，非人数事件为空"
+        }
+      },
+      "key": "id",
+      "references": {
+        "site": [
+          "sites",
+          "id"
+        ],
+        "group": [
+          "group_requests",
+          "id"
+        ]
+      },
+      "sha256": "b4c47e573197ad611a6a540b9ee5ee051590fba3ce1c150297b7611c646ca35c",
+      "row_count": 3
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{"id":"S0","daily_capacity":80,"protected_limit":55,"region":"R0"}
+{"id":"S1","daily_capacity":95,"protected_limit":60,"region":"R1"}
+{"id":"S2","daily_capacity":110,"protected_limit":65,"region":"R2"}
+{"id":"S3","daily_capacity":125,"protected_limit":70,"region":"R0"}
+{"id":"S4","daily_capacity":140,"protected_limit":75,"region":"R1"}
+{"id":"S5","daily_capacity":155,"protected_limit":80,"region":"R2"}

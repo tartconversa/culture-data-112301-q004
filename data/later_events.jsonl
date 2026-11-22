@@ -1,0 +1,3 @@
+{"id":"E-close","kind":"closure","on":"2026-10-01","site":"S0","group":null,"actual_people":null}
+{"id":"E-visit","kind":"redeem","on":"2026-10-04","site":"S0","group":"G3","actual_people":19}
+{"id":"E-bus","kind":"transport","on":"2026-10-04","site":"S1","group":"G3","actual_people":19}

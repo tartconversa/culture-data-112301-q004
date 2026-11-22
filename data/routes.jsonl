@@ -1,0 +1,3 @@
+{"id":"line-a","sites":["S0","S1"],"bus":"B0","bus_seats":30}
+{"id":"line-b","sites":["S1","S2"],"bus":"B0","bus_seats":30}
+{"id":"line-c","sites":["S3","S4","S5"],"bus":"B1","bus_seats":45}

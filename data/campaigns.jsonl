@@ -1,0 +1,8 @@
+{"id":"C0","origin":"C0","start":"2026-04-10","routes":["line-c"],"spillover_origins":["C1"],"intensity":1.0}
+{"id":"C1","origin":"C1","start":"2026-04-18","routes":["line-a","line-b"],"spillover_origins":["C2"],"intensity":2.0}
+{"id":"C2","origin":"C2","start":"2026-04-26","routes":["line-c"],"spillover_origins":["C3"],"intensity":3.0}
+{"id":"C3","origin":"C3","start":"2026-05-04","routes":["line-a","line-b"],"spillover_origins":["C4"],"intensity":1.0}
+{"id":"C4","origin":"C4","start":"2026-05-12","routes":["line-c"],"spillover_origins":["C5"],"intensity":2.0}
+{"id":"C5","origin":"C5","start":"2026-05-20","routes":["line-a","line-b"],"spillover_origins":["C6"],"intensity":3.0}
+{"id":"C6","origin":"C6","start":"2026-05-28","routes":["line-c"],"spillover_origins":["C7"],"intensity":1.0}
+{"id":"C7","origin":"C7","start":"2026-06-05","routes":["line-a","line-b"],"spillover_origins":["C0"],"intensity":2.0}
